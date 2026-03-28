@@ -9,8 +9,16 @@
     @if($sat >= 0 && $sat <= 12)
         <p>Dobro jutro!</p>
     @else
-        <p>Dobar dan!</p>
+        <p>Dobar dan!</p>s
     @endif
+
+    <h1>Last 6 products:</h1>
+    @foreach($products as $product)
+        {{$product->name}}
+        {{$product->description}}<br>
+    @endforeach
+
+
 @endsection
 
 @section("titl")
