@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,5 +12,6 @@ Route::get("/admin/all-contacts" , [\App\Http\Controllers\ContactController::cla
 Route::post("/send-contact" , [\App\Http\Controllers\ContactController::class, "sendContact"]);
     Route::get("/admin/add-product", [\App\Http\Controllers\ProductController::class, "index"]);
     Route::post("/admin/add-product" , [\App\Http\Controllers\ProductController::class, "addProduct"]);
+    Route::get("/admin/products" , [\App\Http\Controllers\ProductController::class, "products"]);
 
 

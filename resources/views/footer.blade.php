@@ -4,7 +4,8 @@
         <li class="nav-item"><a href="/about" class="nav-link px-2 text-muted">About</a></li>
         <li class="nav-item"><a href="/shop" class="nav-link px-2 text-muted">Prodavnica</a></li>
         <li class="nav-item"><a href="/contact" class="nav-link px-2 text-muted">Kontakt</a></li>
-
+        <li class="nav-item"><a href="/admin/add-product" class="nav-link px-2 text-muted">Add Product</a></li>
+        <li class="nav-item"><a href="/admin/products" class="nav-link px-2 text-muted">Products</a></li>
     </ul>
     <p class="text-center text-muted">© 2026 Jesenko</p>
 </footer>
