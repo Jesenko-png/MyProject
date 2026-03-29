@@ -17,7 +17,16 @@
         {{$product->name}}
         {{$product->description}}<br>
     @endforeach
-
+<form method="post" action="/send-contact">
+    @if($errors->any)
+        <p>Greska : {{ $errors->first() }}</p>
+    @endif
+    @csrf
+    <input type="email" name="email" placeholder="Unesite vasu email stranicu">
+    <input type="text" name="subject" placeholder="Unesite naslov poruke">
+    <textarea name="description"></textarea>
+    <button type="submit">Posalji poruku</button>
+</form>
 
 @endsection
 
