@@ -32,4 +32,15 @@ return redirect("/admin/products");
             $products = Product::all();
                 return view('admin.products' , compact('products'));
     }
+    public function delete($product){
+            $singleProduct=Product::where(["id"=>$product])->first();
+
+            if($singleProduct===null){
+                die("Ovaj proizvod ne postoji");
+            }
+            $singleProduct->delete();
+
+            return redirect()->back()   ;
+    }
+
 }

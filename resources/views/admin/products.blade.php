@@ -17,29 +17,36 @@
 
 
 @section("sadrzajStranice")
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amount</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+      @foreach($products as $product)
 
-    <div class="container">
+          <tr>
+              <td>{{ $product->id }}</td>
+              <td>{{ $product->name }}</td>
+              <td>{{ $product->description }}</td>
+              <td>{{ $product->price }}</td>
+              <td>{{ $product->amount }}</td>
+              <td> <a class="btn btn-primary"> Edit</a>
+                  <a class="btn btn-danger" href="/admin/delete-product/{{ $product->id }}">Delete</a></td>
 
-        @foreach($products as $product)
+          </tr>
 
-            <div class="card mb-3">
 
-                <div class="card-body">
+      @endforeach
+        </tbody>
 
-                    <h5 class="card-title">{{ $product->name }}</h5>
-
-                    <p class="card-text">{{ $product->description }}</p>
-
-                    <p>Price: {{ $product->price }} €</p>
-
-                    <p>Amount: {{ $product->amount }}</p>
-
-                </div>
-
-            </div>
-
-        @endforeach
-
-    </div>
+    </table>
 
 @endsection
