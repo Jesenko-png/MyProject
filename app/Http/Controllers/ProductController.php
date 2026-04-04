@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
     class ProductController extends Controller
 {
@@ -11,21 +12,21 @@ use Illuminate\Http\Request;
 }
         public function addProduct(Request $request){
                     $request->validate([
-                        "name"=>"required|string|min:3|max:50",
+                        "name"=>"required|string|min:3|max:50|unique:products",
                         "description"=>"required|string|min:3|max:50",
                         "price"=>"required|numeric|min:0",
                         "amount"=>"required|numeric|min:0",
                         "image"=>"required|string"
                     ]);
             Product::create([
-                        "name" => $request->name,
-                        "description" => $request->description,
-                        "amount" => $request->amount,
-                        "price" => $request->price,
-                        "image" => $request->image
+                        "name" => $request->get("name"),
+                        "description" => $request->get("description"),
+                        "amount" => $request->get("amount"),
+                        "price" => $request->get("price"),
+                        "image" => $request->get("image")
                     ]);
 
-return redirect("/admin/products");
+return redirect()->route("sviProizvodi");
 }
         public function products()
     {
@@ -42,5 +43,38 @@ return redirect("/admin/products");
 
             return redirect()->back()   ;
     }
+    public function edit($product){
+            $singleProduct=Product::find($product);
+
+            return view('admin.editProduct' , compact('singleProduct'));
+    }
+        public function update(Request $request, $product)
+        {
+            $request->validate([
+                "name" => [
+                    "required",
+                    "string",
+                    "min:3",
+                    "max:50",
+                    Rule::unique('products')->ignore($product)
+                ],
+                "description" => "required|string|min:3|max:50",
+                "price" => "required|numeric|min:0",
+                "amount" => "required|numeric|min:0",
+                "image" => "required|string"
+            ]);
+
+            $updateProduct = Product::findOrFail($product);
+
+            $updateProduct->name = $request->name;
+            $updateProduct->description = $request->description;
+            $updateProduct->price = $request->price;
+            $updateProduct->amount = $request->amount;
+            $updateProduct->image = $request->image;
+
+            $updateProduct->save();
+
+            return redirect()->route("sviProizvodi");
+        }
 
 }

@@ -38,8 +38,8 @@
               <td>{{ $product->description }}</td>
               <td>{{ $product->price }}</td>
               <td>{{ $product->amount }}</td>
-              <td> <a class="btn btn-primary"> Edit</a>
-                  <a class="btn btn-danger" href="/admin/delete-product/{{ $product->id }}">Delete</a></td>
+              <td> <a class="btn btn-primary" href="{{route('editProizvoda' , $product->id) }}"> Edit</a>
+                  <a class="btn btn-danger" href="{{route("izbrisiProduct" ,$product->id) }}">Delete</a></td>
 
           </tr>
 

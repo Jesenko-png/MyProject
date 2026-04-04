@@ -2,7 +2,7 @@
 
 @section("sadrzajStranice")
 
-    <form method="POST" action="/admin/add-product">
+    <form method="POST" action={{route("snimanjeProizvoda") }}>
         @csrf
 
         @if($errors->any())
@@ -44,7 +44,7 @@
             <tr>
                 <th>Slika</th>
                 <td>
-                    <input type="text" name="image" class="form-control" value="{{ old('image') }}">
+                    <input type="text" name="image" class="form-control">
                 </td>
             </tr>
 
