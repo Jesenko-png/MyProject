@@ -36,7 +36,7 @@
                 <td>{{ $contact->email }}</td>
                 <td>{{ $contact->subject }}</td>
                 <td>{{ $contact->message }}</td>
-                <td> <a class="btn btn-primary"> Edit</a>
+                <td> <a class="btn btn-primary" href="{{route("editContact" , $contact->id) }}"> Edit</a>
                     <a class="btn btn-danger" href="/admin/delete-contact/{{ $contact->id }}">Delete</a></td>
 
             </tr>
