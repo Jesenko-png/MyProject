@@ -14,7 +14,7 @@
         Subject:
         <input type="text" name="subject" value="{{$singleContact->subject}}">
 
-        Description:
+        Message:
         <textarea name="message"> {{$singleContact->message}}"</textarea>
 
 
