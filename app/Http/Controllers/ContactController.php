@@ -65,7 +65,7 @@ class ContactController extends Controller
 
     $updateContact->save();
 
-    return redirect()->route("all-contacts");
+    return redirect()->route("node -vall-contacts");
 
 }
 }

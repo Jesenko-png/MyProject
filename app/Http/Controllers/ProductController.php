@@ -43,12 +43,12 @@ return redirect()->route("sviProizvodi");
 
             return redirect()->back()   ;
     }
-    public function edit($product){
-            $singleProduct=Product::find($product);
+    public function edit(Request $request , Product $product){
 
-            return view('admin.editProduct' , compact('singleProduct'));
+
+            return view('admin.editProduct' , compact('product'));
     }
-        public function update(Request $request, $product)
+        public function update(Request $request, Product $product)
         {
             $request->validate([
                 "name" => [
@@ -56,7 +56,7 @@ return redirect()->route("sviProizvodi");
                     "string",
                     "min:3",
                     "max:50",
-                    Rule::unique('products')->ignore($product)
+                    Rule::unique('products')->ignore($product->id)
                 ],
                 "description" => "required|string|min:3|max:50",
                 "price" => "required|numeric|min:0",
@@ -64,15 +64,15 @@ return redirect()->route("sviProizvodi");
                 "image" => "required|string"
             ]);
 
-            $updateProduct = Product::findOrFail($product);
 
-            $updateProduct->name = $request->name;
-            $updateProduct->description = $request->description;
-            $updateProduct->price = $request->price;
-            $updateProduct->amount = $request->amount;
-            $updateProduct->image = $request->image;
 
-            $updateProduct->save();
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->price = $request->price;
+            $product->amount = $request->amount;
+            $product->image = $request->image;
+
+            $product->save();
 
             return redirect()->route("sviProizvodi");
         }
