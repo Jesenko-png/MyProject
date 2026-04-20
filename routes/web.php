@@ -9,7 +9,9 @@ use App\Http\Controllers\ProductController;
 
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])
+    ->prefix('admin')
+    ->group(function () {
 
 
 Route::get('/', function () {
@@ -34,20 +36,20 @@ Route::view("about", "about");
 Route::get("/", [HomepageController::class, "index"]);
 Route::get("/shop", [ShopController::class, "index"]);
 Route::get("/contact", [ContactController::class, "index"]);
-Route::get("/admin/all-contacts", [ContactController::class, "getAllContacts"])->name("all-contacts");
+Route::get("/all-contacts", [ContactController::class, "getAllContacts"])->name("all-contacts");
 Route::post("/send-contact", [ContactController::class, "sendContact"])->name("sendContact");
 
-Route::get("/admin/add-product", [ProductController::class, "index"]);
-Route::post("/admin/dodajProizvod", [ProductController::class, "addProduct"])->name("snimanjeProizvoda");
+Route::get("/add-product", [ProductController::class, "index"]);
+Route::post("/dodajProizvod", [ProductController::class, "addProduct"])->name("snimanjeProizvoda");
 
-Route::get("/admin/products", [ProductController::class, "products"])->name("sviProizvodi");
-Route::get("admin/edit-proizvoda/{product}", [ProductController::class, "edit"])->name("editProizvoda");
-Route::post('/admin/update-proizvoda/{product}', [ProductController::class, "update"])->name("updateProizvoda");
+Route::get("/products", [ProductController::class, "products"])->name("sviProizvodi");
+Route::get("/edit-proizvoda/{product}", [ProductController::class, "edit"])->name("editProizvoda");
+Route::post('/update-proizvoda/{product}', [ProductController::class, "update"])->name("updateProizvoda");
 
-Route::get("/admin/delete-product-now/{product}", [ProductController::class, "delete"])->name('izbrisiProduct');
-Route::get("/admin/delete-contact/{contact}", [ContactController::class, "deleteContact"])->name('izbrisiContact');
-Route::get("/admin/edit-contact/{contact}", [ContactController::class, "editContact"])->name('editContact');
-Route::post("/admin/update-contact/{contact}", [ContactController::class, "updateContact"])->name('updateContact');
+Route::get("/delete-product-now/{product}", [ProductController::class, "delete"])->name('izbrisiProduct');
+Route::get("/delete-contact/{contact}", [ContactController::class, "deleteContact"])->name('izbrisiContact');
+Route::get("/edit-contact/{contact}", [ContactController::class, "editContact"])->name('editContact');
+Route::post("/update-contact/{contact}", [ContactController::class, "updateContact"])->name('updateContact');
 
 });
 require __DIR__.'/auth.php';
